@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommender System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            padding-top: 60px; /* Adjust based on navbar height */
+        }
+        .navbar {
+            background-color: #2a3166;
+        }
+        .navbar-brand {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar-brand .text-title:hover {
+            color: #cae7df;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #cae7df;
+        }
+        .book-card {
+            margin-top: 30px; /* Adjust top margin */
+            margin-bottom: 20px; /* Adjust bottom margin */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: 90%; /* Set a fixed height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .book-card img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .book-card .card-body {
+            flex-grow: 1; /* Allow the body to grow and take remaining space */
+        }
+
+        .book-card h2, .book-card h4, .book-card p {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-title" href="#">My Book Recommender</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recommend">Recommend</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Top 50 Books</h1>
+            </div>
+
+
+            {% for i in range(book_name|length) %}
+            <div class="col-md-3">
+                <div class="book-card">
+                    <div class="card">
+                        <img src="{{ image[i] }}" class="card-img-top" alt="Book Cover">
+                        <div class="card-body">
+                            <p>{{ book_name[i] }}</p>
+                            <h4>{{ author[i] }}</h4>
+                            <p>Votes - {{ votes[i] }}</p>
+                            <p>Rating - {{ rating[i] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-0ZmzSqLpuT1I3V7FpsZ4q3fJJN6p7yzI/Kzho5G5jz5H6B18ZUvOGp9JhZiF5uz0P" crossorigin="anonymous"></script>
+</body>
+</html>
